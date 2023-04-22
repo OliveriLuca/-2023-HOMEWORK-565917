@@ -1,21 +1,26 @@
 package it.uniroma3.diadia.giocatore;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
+import it.uniroma3.diadia.IO;
+import it.uniroma3.diadia.Partita;
 
 public class Borsa {
 	public final static int DEFAULT_PESO_MAX_BORSA = 10;
 	private Attrezzo[] attrezzi;
 	private int numeroAttrezzi;
 	private int pesoMax;
+	private IO io;
 
-	public Borsa() {
-		this(DEFAULT_PESO_MAX_BORSA);
+	public Borsa(IO io) {
+		this(DEFAULT_PESO_MAX_BORSA, io);
 	}
 
-	public Borsa(int pesoMax) {
+	public Borsa(int pesoMax, IO io) {
 		this.pesoMax = pesoMax;
 		this.attrezzi = new Attrezzo[10]; // speriamo bastino...
 		this.numeroAttrezzi = 0;
+		this.io = io;
+
 	}
 
 	public int getNumeroAttrezzi() {
@@ -45,7 +50,7 @@ public class Borsa {
 
 	public int getPeso() {
 		int peso = 0;
-		for (int i= 0; i<this.numeroAttrezzi; i++) {
+		for (int i= 0; i<this.attrezzi.length; i++) {
 			if(this.attrezzi[i] != null){
 				peso += this.attrezzi[i].getPeso();
 			} 
@@ -75,9 +80,10 @@ public class Borsa {
 	}
 
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
+
 		Attrezzo a = null;
 		if(isEmpty()) {
-			System.out.println("borsa vuota, non puoi rimuovere nessun attrezzo!");
+			io.mostraMessaggio("borsa vuota, non puoi rimuovere nessun attrezzo!");
 			return a;
 		}
 		else {
@@ -92,7 +98,7 @@ public class Borsa {
 				return a;
 			}
 			else {
-				System.out.println("Attrezzo non presente nella borsa!");
+				io.mostraMessaggio("Attrezzo non presente nella borsa!");
 			}
 		}
 		return a;
@@ -102,8 +108,11 @@ public class Borsa {
 		StringBuilder s = new StringBuilder();
 		if (!this.isEmpty()) {
 			s.append("Contenuto borsa ("+this.getPeso()+"kg/"+this.getPesoMax()+"kg): ");
-			for (int i= 0; i<this.numeroAttrezzi; i++)
-				s.append(attrezzi[i].toString()+" ");
+			for (int i= 0; i<this.attrezzi.length; i++) {
+				if(this.attrezzi[i] != null) {
+				s.append(this.attrezzi[i].toString()+" ");
+				}
+			}
 		}
 		else
 			s.append("Borsa vuota");

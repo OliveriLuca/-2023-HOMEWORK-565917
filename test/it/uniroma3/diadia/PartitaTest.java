@@ -17,12 +17,13 @@ class PartitaTest {
 	private Stanza stanzaVincente;
 	boolean finita;
 	int cfu;
+	private IO io;
 
 	@BeforeEach
 	public void setUp() {
 		this.labirinto = new Labirinto();
-		this.giocatore = new Giocatore();
-		this.partita = new Partita();
+		this.giocatore = new Giocatore(io);
+		this.partita = new Partita(io);
 		this.finita = false;
 		this.stanzaCorrente = new Stanza ("ingresso");
 		this.stanzaVincente = new Stanza ("biblioteca");

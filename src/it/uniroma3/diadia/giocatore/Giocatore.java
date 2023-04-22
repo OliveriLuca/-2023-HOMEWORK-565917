@@ -1,5 +1,7 @@
 package it.uniroma3.diadia.giocatore;
 
+import it.uniroma3.diadia.IO;
+
 /* ha la responsabilita di gestire cfu giocatore e
  * memorizzare gli attrezzi in un oggetto istanza della classe Borsa. */
 
@@ -7,10 +9,12 @@ public class Giocatore {
 	static final private int CFU_INIZIALI = 20;
 	private int cfu;
 	private Borsa borsa;
+	public IO io;
 
-	public Giocatore(){
+	public Giocatore(IO io){
 		this.cfu = CFU_INIZIALI;
-		this.borsa = new Borsa();
+		this.io = io;
+		this.borsa = new Borsa(io);
 	}
 
 	public int getCfu() {

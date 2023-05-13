@@ -1,12 +1,15 @@
 package it.uniroma3.diadia.comand;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.comando.Comando;
 import it.uniroma3.diadia.comando.ComandoVai;
@@ -18,6 +21,7 @@ public class ComandoVaiTest {
 	private Comando vai;
 	private Partita game;
 	private IO io;
+	private Labirinto lab;
 	
 	@BeforeEach
 	public void setUp()  {
@@ -25,7 +29,8 @@ public class ComandoVaiTest {
 		room2 = new Stanza("room 2");
 		vai = new ComandoVai();
 		io = new IOConsole();
-		game = new Partita(io);
+		lab = new Labirinto();
+		game = new Partita(lab, io);
 		
 	}
 

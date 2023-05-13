@@ -20,9 +20,9 @@ public class Partita {
 	public IO io;
 	private Stanza stanzaVincente;
 
-	public Partita(IO io){
+	public Partita(Labirinto labirinto, IO io){
 		this.finita = false;
-		this.labirinto = new Labirinto();
+		this.labirinto = labirinto;
 		this.giocatore = new Giocatore(io);
 		this.io = io;
 		this.stanzaVincente = this.labirinto.getUscita();
@@ -51,8 +51,10 @@ public class Partita {
 				io.mostraMessaggio("Hai esaurito i crediti. Mi spiace, hai preso !");
 				return true;
 			}
-			else if (finita)
+			else
+				if (finita) {
 				return true;
+				}
 			else
 				return false;
 	}

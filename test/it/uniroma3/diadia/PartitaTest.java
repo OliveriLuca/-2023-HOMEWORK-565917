@@ -13,33 +13,32 @@ class PartitaTest {
 	private Labirinto labirinto;
 	private Giocatore giocatore;
 	private Partita partita;
-	private Stanza stanzaCorrente;
-	private Stanza stanzaVincente;
 	boolean finita;
 	int cfu;
 	private IO io;
 
 	@BeforeEach
 	public void setUp() {
+		this.io = new IOConsole();
 		this.labirinto = new Labirinto();
+		this.labirinto.setStanzaCorrente(new Stanza ("ingresso"));
+		this.labirinto.setUscita(new Stanza ("biblioteca"));
 		this.giocatore = new Giocatore(io);
-		this.partita = new Partita(io);
+		this.partita = new Partita(labirinto, io);
 		this.finita = false;
-		this.stanzaCorrente = new Stanza ("ingresso");
-		this.stanzaVincente = new Stanza ("biblioteca");
 		this.giocatore.setCfu(20);
 	}
 	
 	@Test
 	void testVinta1() {
-		//all'inizio l'atrio non e' la stanza vincente...
+		
 		assertEquals(false, partita.vinta());
 	}
 
 
 	@Test
 	void testIsFinita1() {
-		//all'inizio della partita la partita non e' finita...
+		
 		assertEquals(false, partita.isFinita());
 	}
 
@@ -63,6 +62,22 @@ class PartitaTest {
 	void testIsFinita2() {
     	partita.setFinita(finita);
 		assertEquals(true, partita.isFinita());
+	}
+
+	public Stanza getStanzaCorrente() {
+		return stanzaCorrente;
+	}
+
+	public void setStanzaCorrente(Stanza stanzaCorrente) {
+		this.stanzaCorrente = stanzaCorrente;
+	}
+
+	public Stanza getStanzaVincente() {
+		return stanzaVincente;
+	}
+
+	public void setStanzaVincente(Stanza stanzaVincente) {
+		this.stanzaVincente = stanzaVincente;
 	}
     
     

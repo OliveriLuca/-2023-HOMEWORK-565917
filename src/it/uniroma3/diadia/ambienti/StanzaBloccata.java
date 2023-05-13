@@ -29,7 +29,7 @@ public class StanzaBloccata extends Stanza {
 		StringBuilder bloccata = new StringBuilder(); 
 		
 		if(!this.hasAttrezzo(chiave))
-			bloccata.append( "Stanza bloccata nella direzione: "+direzioneBloccata+"\nPrendi il "+chiave+" e posalo nella stanzaBloccata");;
+			bloccata.append( "Stanza bloccata nella direzione: "+direzioneBloccata+"\nPrendi il "+chiave+" e posalo nella stanzaBloccata\n");;
 		
 		return bloccata.append(super.getDescrizione()).toString();	
 	}

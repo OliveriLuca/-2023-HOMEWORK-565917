@@ -25,12 +25,14 @@ class StanzaTest {
 	@Test
      void testAddAttrezzo() {
 		assertEquals(true, stanzaTest.addAttrezzo(scudo));	
+		assertEquals(true, stanzaTest.removeAttrezzo(scudo));
+
 	}
 
-	@Test 
-	void testRemoveAttrezzo(){
-		assertEquals(true, stanzaTest.removeAttrezzo(scudo));
-	}
+//	@Test 
+//	void testRemoveAttrezzo(){
+//		assertEquals(true, stanzaTest.removeAttrezzo(scudo));
+//	}
 
 	@Test 
 	void testHasAttrezzo(){
